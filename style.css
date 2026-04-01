@@ -286,7 +286,7 @@ header {
 
 .hero-sequence {
     max-width: 85%;
-    /* Sombra extra larga, dividida em duas camadas lentas HDR para remover aspeto quadrado (bug WebKit mobile) */
+    /* Sombra extra larga HDR (Ultra Premium no Desktop) */
     filter: drop-shadow(0 30px 60px rgba(0,0,0,0.25)) drop-shadow(0 10px 15px rgba(0,0,0,0.15));
     -webkit-filter: drop-shadow(0 30px 60px rgba(0,0,0,0.25)) drop-shadow(0 10px 15px rgba(0,0,0,0.15));
     position: relative;
@@ -294,22 +294,16 @@ header {
     margin-top: 40px; /* Afasta ligeiramente as fotos do topo do texto */
 }
 
-/* Stack DOM animation (Anti-Lag Mobile) */
-#hero-animation-container img {
+/* HTML5 Canvas Animation (Aceleração Absoluta por Hardware) */
+#hero-canvas {
     width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    will-change: opacity;
-}
-
-#hero-animation-container img.hero-frame-base {
-    position: relative;
-}
-
-#hero-animation-container img.active {
-    opacity: 1;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    /* Força o dispositivo móvel a não recalcular pixels lateralmente (Anti-Lag Supremo) */
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 /* Promoções e Lançamentos */
@@ -915,6 +909,14 @@ header {
         visibility: visible;
         pointer-events: auto;
         transform: translateY(0);
+    }
+
+    .hero-sequence {
+        max-width: 100%;
+        margin-top: 0px;
+        /* Aliviar para apenas UMA máscara de sombra esticada para poupar dezenas de megabytes de RAM GPU e evitar lag total */
+        filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+        -webkit-filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
     }
 
     .hero {

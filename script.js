@@ -33,56 +33,82 @@ document.addEventListener("DOMContentLoaded", () => {
     const animatedElements = document.querySelectorAll('.fade-in, .slide-up');
     animatedElements.forEach(el => scrollObserver.observe(el));
 
-    // Lógica da Animação Hero em DOM Stacking (Alta Performance / Zero Lag Mobile)
+    // Lógica da Animação Hero em HTML5 Canvas (Hardware Accelerated, Ultra Performance)
     const container = document.getElementById('hero-animation-container');
-    if (container) {
+    const canvas = document.getElementById('hero-canvas');
+    
+    if (container && canvas) {
+        const ctx = canvas.getContext('2d');
         let loaded = 0;
         const totalFrames = 40;
-        const imagesDOM = [];
+        const imagesObj = [];
         
-        // Limpar placeholder inicial
-        container.innerHTML = ''; 
-
         for (let i = 1; i <= totalFrames; i++) {
             const frameNumber = i.toString().padStart(3, '0');
             const img = new Image();
             img.src = `hamburguerjsk/ezgif-frame-${frameNumber}.png`;
-            img.alt = "";
-            
-            // Frame 1 fica relativo para "esticar" a altura da DIV contentora.
-            if (i === 1) {
-                img.className = "hero-frame-base";
-            }
             
             img.onload = () => {
                 loaded++;
-                // Inicia quando o iPhone/Android relatar download 100% de todas sem exceção!
-                if (loaded === totalFrames) startSmoothAnimation();
+                // Inicia canvas quando todas forem carregadas
+                if (loaded === totalFrames) {
+                    initCanvas();
+                    startScrollAnimation();
+                }
             };
             img.onerror = () => {
                 loaded++;
-                if (loaded === totalFrames) startSmoothAnimation();
+                if (loaded === totalFrames) {
+                    initCanvas();
+                    startScrollAnimation();
+                }
             };
-            
-            imagesDOM.push(img);
-            container.appendChild(img);
+            imagesObj.push(img);
         }
 
-        function startSmoothAnimation() {
-            let current = 0;
-            imagesDOM[0].classList.add('active'); // Mostrar primeira frame
+        function initCanvas() {
+            // Ajustar o canvas ao tamanho original da primeira imagem 
+            if(imagesObj[0] && imagesObj[0].width) {
+                canvas.width = imagesObj[0].width;
+                canvas.height = imagesObj[0].height;
+                // Pintar log o primeiro frame original
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(imagesObj[0], 0, 0);
+            }
+        }
+
+        function startScrollAnimation() {
+            let lastFrame = 0;
+            // Bloqueio de performance para não inundar o GPU
+            let ticking = false; 
             
-            const interval = setInterval(() => {
-                imagesDOM[current].classList.remove('active'); // Esconder antiga
-                current++;
-                
-                if (current >= totalFrames) {
-                    clearInterval(interval);
-                    imagesDOM[totalFrames - 1].classList.add('active'); // Trancar a última frame visível
-                } else {
-                    imagesDOM[current].classList.add('active'); // Revelar seguinte
+            // O hambúrguer só é montado através do scroll nativo puro
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        // Mais sensível e rápido no mobile (300px), mais longo e dramático no PC (500px)
+                        const isMobile = window.innerWidth <= 900;
+                        const scrollNecessario = isMobile ? 300 : 500; 
+                        
+                        let progress = scrollY / scrollNecessario;
+                        if (progress < 0) progress = 0;
+                        if (progress > 1) progress = 1; // Trava perfeitamente no último frame final
+                        
+                        // Mapeia a percentagem da descida
+                        let targetFrame = Math.floor(progress * (totalFrames - 1));
+                        
+                        // Reescreve o Canvas instantaneamente sem mexer na estrutura da página HTML (Zero Lag)
+                        if (targetFrame !== lastFrame && imagesObj[targetFrame]) {
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            ctx.drawImage(imagesObj[targetFrame], 0, 0);
+                            lastFrame = targetFrame;
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
                 }
-            }, 80); // Ritmo fluido a ~12.5 FPS baseados em placa gráfica
+            }, { passive: true }); // passive impede bloqueios visuais na Apple
         }
     }
 
