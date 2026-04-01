@@ -33,33 +33,57 @@ document.addEventListener("DOMContentLoaded", () => {
     const animatedElements = document.querySelectorAll('.fade-in, .slide-up');
     animatedElements.forEach(el => scrollObserver.observe(el));
 
-    // Lógica da Animação Hero via Sequência de Imagens (SpriteSheet-like)
-    const heroAnimationImg = document.getElementById('hero-animation-img');
-    if (heroAnimationImg) {
-        let currentFrame = 1;
+    // Lógica da Animação Hero em DOM Stacking (Alta Performance / Zero Lag Mobile)
+    const container = document.getElementById('hero-animation-container');
+    if (container) {
+        let loaded = 0;
         const totalFrames = 40;
-        const frames = [];
+        const imagesDOM = [];
         
-        // Fazer Preload de todas as imagens para evitar flashes entre frames
+        // Limpar placeholder inicial
+        container.innerHTML = ''; 
+
         for (let i = 1; i <= totalFrames; i++) {
             const frameNumber = i.toString().padStart(3, '0');
-            const imgSrc = `hamburguerjsk/ezgif-frame-${frameNumber}.png`;
-            
             const img = new Image();
-            img.src = imgSrc;
-            frames.push(imgSrc);
+            img.src = `hamburguerjsk/ezgif-frame-${frameNumber}.png`;
+            img.alt = "";
+            
+            // Frame 1 fica relativo para "esticar" a altura da DIV contentora.
+            if (i === 1) {
+                img.className = "hero-frame-base";
+            }
+            
+            img.onload = () => {
+                loaded++;
+                // Inicia quando o iPhone/Android relatar download 100% de todas sem exceção!
+                if (loaded === totalFrames) startSmoothAnimation();
+            };
+            img.onerror = () => {
+                loaded++;
+                if (loaded === totalFrames) startSmoothAnimation();
+            };
+            
+            imagesDOM.push(img);
+            container.appendChild(img);
         }
 
-        // Tocar a animação em slow motion apenas uma vez ao carregar a página
-        const animationInterval = setInterval(() => {
-            currentFrame++;
-            if (currentFrame > totalFrames) {
-                clearInterval(animationInterval); // Parar a animação quando chegar ao fim
-            } else {
-                // Atualizar o src visível apenas se houver mais frames
-                heroAnimationImg.src = frames[currentFrame - 1];
-            }
-        }, 83);
+        function startSmoothAnimation() {
+            let current = 0;
+            imagesDOM[0].classList.add('active'); // Mostrar primeira frame
+            
+            const interval = setInterval(() => {
+                imagesDOM[current].classList.remove('active'); // Esconder antiga
+                current++;
+                
+                if (current >= totalFrames) {
+                    clearInterval(interval);
+                    imagesDOM[totalFrames - 1].classList.add('active'); // Trancar a última frame visível
+                } else {
+                    imagesDOM[current].classList.add('active'); // Revelar seguinte
+                }
+            }, 80); // Ritmo fluido a ~12.5 FPS baseados em placa gráfica
+        }
     }
 
     // Lógica do Carousel manual removida a favor do Marquee Infinito (CSS Only).
