@@ -81,6 +81,16 @@ document.addEventListener("DOMContentLoaded", () => {
             let lastFrame = 0;
             let ticking = false; 
             
+            // Cache Absoluto para não matar a memória do Telemóvel (Anti Layout-Thrashing)
+            let canvasAbsoluteTop = canvas.getBoundingClientRect().top + window.scrollY;
+            let windowHeight = window.innerHeight;
+            
+            // Se virar o telemóvel, recalcula
+            window.addEventListener('resize', () => {
+                canvasAbsoluteTop = canvas.getBoundingClientRect().top + window.scrollY;
+                windowHeight = window.innerHeight;
+            }, { passive: true });
+            
             window.addEventListener('scroll', () => {
                 if (!ticking) {
                     window.requestAnimationFrame(() => {
@@ -88,17 +98,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         let progress = 0;
                         
                         if (isMobile) {
-                            // No mobile: O hambúrguer monta dependendo de onde ele está na janela fisicamente!
-                            const rect = canvas.getBoundingClientRect();
-                            const windowHeight = window.innerHeight;
+                            // Lógica Ultra-Rápida via Matemática base em vez de interrogar a gráfica
+                            const currentRectTop = canvasAbsoluteTop - window.scrollY;
                             
-                            // Distância mágica: "Começa quando entrar pela base e termina perto do centro"
                             const startVis = windowHeight - 50; 
                             const endVis = windowHeight / 2 - 50;
                             
-                            progress = (startVis - rect.top) / (startVis - endVis);
+                            progress = (startVis - currentRectTop) / (startVis - endVis);
                         } else {
-                            // No PC: O hambúrguer nasce no centro, portanto vincula direto aos primeiros 500px da página
                             progress = window.scrollY / 500;
                         }
                         
@@ -120,9 +127,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Lógica do Carousel manual removida a favor do Marquee Infinito (CSS Only).
+    // --- Menu Mobile 100% Certo Sem Falhas JS ---
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mainNav = document.querySelector('.main-nav');
+    if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            mainNav.classList.toggle('active');
+        });
+        
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+            });
+        });
+    }
 
-    // --- Lógica do Botão iFood (Download / Deep Link Inteligente) ---
+    // Ações iFood
     const ifoodBtn = document.getElementById('ifood-download');
     if (ifoodBtn) {
         ifoodBtn.addEventListener('click', function(e) {

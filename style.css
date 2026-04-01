@@ -75,6 +75,8 @@ header {
     cursor: pointer;
     padding: 5px;
     -webkit-tap-highlight-color: transparent;
+    position: relative;
+    z-index: 1002;
 }
 
 .main-nav {
@@ -904,7 +906,7 @@ header {
         z-index: 999;
     }
 
-    #mobile-menu-toggle:checked ~ .main-nav {
+    .main-nav.active {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
