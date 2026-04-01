@@ -45,8 +45,8 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
-    border-bottom: 1px solid #eaeaea;
+    z-index: 1100;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .header-container {
@@ -79,7 +79,8 @@ header {
     z-index: 1002;
 }
 
-.main-nav {
+/* Nav Desktop */
+.main-nav--desktop {
     display: flex;
     gap: 30px;
 }
@@ -87,10 +88,73 @@ header {
 .main-nav a {
     font-weight: 600;
     font-size: 1.05rem;
+    transition: color 0.2s ease;
 }
 
 .main-nav a:hover {
     color: var(--primary);
+}
+
+/* Nav Mobile (Dropdown) */
+.main-nav--mobile {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: rgba(12, 12, 12, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 12px 0 24px;
+    gap: 0;
+    align-items: stretch;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 1099;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.main-nav--mobile.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.main-nav--mobile a {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 16px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    text-align: left;
+    letter-spacing: 0.03em;
+}
+
+.main-nav--mobile a:last-child {
+    border-bottom: none;
+}
+
+.main-nav--mobile a:hover,
+.main-nav--mobile a:active {
+    color: var(--primary);
+    background: rgba(255,255,255,0.04);
+}
+
+.main-nav--mobile .nav-cardapio-btn {
+    margin: 16px 24px 0;
+    border-bottom: none;
+    border-radius: 50px;
+    background: var(--primary);
+    color: #fff;
+    text-align: center;
+    padding: 14px 24px;
+    font-weight: 700;
 }
 
 .logo img {
@@ -878,40 +942,21 @@ header {
 /* Responsive */
 @media (max-width: 900px) {
     .mobile-menu-btn {
-        display: block;
+        display: flex;
+        align-items: center;
         margin-left: auto;
     }
 
     .desktop-btn {
-        display: none; /* Esconde o botão massivo Ver Cardápio da NavBar no mobile */
+        display: none;
     }
 
-    .main-nav {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.98);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        padding: 20px 0;
-        gap: 20px;
-        align-items: center;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transform: translateY(-20px);
-        transition: all 0.3s ease;
-        z-index: 999;
+    /* Esconde a nav de desktop no mobile */
+    .main-nav--desktop {
+        display: none !important;
     }
 
-    .main-nav.active {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transform: translateY(0);
-    }
+    /* A nav mobile já tem os estilos definidos globalmente acima */
 
     .hero-sequence {
         max-width: 100%;

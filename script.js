@@ -1,14 +1,54 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // --- Menu Mobile ---
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileNav = document.getElementById('mobile-dropdown-nav');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+
+    if (mobileMenuBtn && mobileNav) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isOpen = mobileNav.classList.toggle('active');
+            mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+            mobileNav.setAttribute('aria-hidden', !isOpen);
+            if (iconOpen) iconOpen.style.display = isOpen ? 'none' : 'block';
+            if (iconClose) iconClose.style.display = isOpen ? 'block' : 'none';
+        });
+
+        // Fecha ao clicar num link
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileNav.setAttribute('aria-hidden', 'true');
+                if (iconOpen) iconOpen.style.display = 'block';
+                if (iconClose) iconClose.style.display = 'none';
+            });
+        });
+
+        // Fecha ao clicar fora
+        document.addEventListener('click', function(e) {
+            if (!mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileNav.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileNav.setAttribute('aria-hidden', 'true');
+                if (iconOpen) iconOpen.style.display = 'block';
+                if (iconClose) iconClose.style.display = 'none';
+            }
+        });
+    }
+
     // Scroll suave para links internos
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            const target = document.querySelector(href);
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                e.preventDefault();
+                // Fecha o menu mobile se estiver aberto
+                if (mainNav) mainNav.classList.remove('active');
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
     });
@@ -127,52 +167,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --- Menu Mobile 100% Certo Sem Falhas JS ---
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mainNav = document.querySelector('.main-nav');
-    if (mobileMenuBtn && mainNav) {
-        mobileMenuBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            mainNav.classList.toggle('active');
-        });
-        
-        mainNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-            });
-        });
-    }
-
     // Ações iFood
     const ifoodBtn = document.getElementById('ifood-download');
     if (ifoodBtn) {
         ifoodBtn.addEventListener('click', function(e) {
             e.preventDefault();
             const ua = navigator.userAgent || navigator.vendor || window.opera;
-            
-            // Redirecionamento Inteligente baseado no Sistema Operativo
             if (/android/i.test(ua)) {
-                // Tenta abrir app, se não tiver vai para a Play Store pedir para baixar
                 window.location.href = "intent://#Intent;package=br.com.brainweb.ifood;scheme=ifood;end";
-            } 
-            else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
-                // Tenta abrir app, se não vira janela da App Store pedir para baixar
+            } else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
                 window.location.href = "https://apps.apple.com/br/app/ifood-delivery-de-comida/id483668252";
-            } 
-            else {
-                // Utilizadores de Computador PC/Mac
+            } else {
                 window.open("https://www.ifood.com.br/", "_blank");
             }
-        });
-    }
-
-    // Fechar o menu Mobile puro (Checkbox) ao carregar nos atalhos
-    const menuToggle = document.getElementById('mobile-menu-toggle');
-    if(menuToggle) {
-        document.querySelectorAll('.main-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.checked = false;
-            });
         });
     }
 });
