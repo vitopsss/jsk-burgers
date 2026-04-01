@@ -15,8 +15,8 @@
                 <img src="assets/logojsk.jpg" alt="JSK Burgers">
             </a>
 
-            <!-- NAV PRINCIPAL (Desktop) -->
-            <nav class="main-nav main-nav--desktop" aria-label="Menu">
+            <!-- Nav Desktop -->
+            <nav class="nav-desktop">
                 <a href="#inicio">Início</a>
                 <a href="#promocoes">Lançamentos</a>
                 <a href="#sanduiches">Mais Pedidos</a>
@@ -26,24 +26,31 @@
 
             <a href="assets/cardapio.jpg" target="_blank" class="btn btn-primary pulse desktop-btn" style="font-weight: 700; border-radius: 50px;">Ver Cardápio Completo</a>
 
-            <!-- BOTÃO HAMBURGUER - onclick inline para 100% de compatibilidade mobile -->
-            <button class="mobile-menu-btn" onclick="document.getElementById('mobile-dropdown-nav').classList.toggle('active')" aria-label="Abrir Menu">
+            <!-- Botão Mobile: abre o menu via CSS :target -->
+            <a href="#nav-mobile" class="hamburger-btn" aria-label="Abrir Menu">
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <line x1="3" y1="6" x2="21" y2="6"></line>
                     <line x1="3" y1="12" x2="21" y2="12"></line>
                     <line x1="3" y1="18" x2="21" y2="18"></line>
                 </svg>
-            </button>
+            </a>
         </div>
 
-        <!-- NAV DROPDOWN (Mobile) -->
-        <nav id="mobile-dropdown-nav" class="main-nav main-nav--mobile">
-            <a href="#inicio" onclick="this.closest('#mobile-dropdown-nav').classList.remove('active')">Início</a>
-            <a href="#promocoes" onclick="this.closest('#mobile-dropdown-nav').classList.remove('active')">Lançamentos</a>
-            <a href="#sanduiches" onclick="this.closest('#mobile-dropdown-nav').classList.remove('active')">Mais Pedidos</a>
-            <a href="#unidades" onclick="this.closest('#mobile-dropdown-nav').classList.remove('active')">Unidades</a>
-            <a href="#historia" onclick="this.closest('#mobile-dropdown-nav').classList.remove('active')">História</a>
-            <a href="assets/cardapio.jpg" target="_blank" class="nav-cardapio-btn">Ver Cardápio Completo</a>
+        <!-- Nav Mobile (CSS :target) -->
+        <nav id="nav-mobile" class="nav-mobile">
+            <!-- Botão fechar: volta para # removendo o :target -->
+            <a href="#" class="nav-mobile-close" aria-label="Fechar Menu">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                </svg>
+            </a>
+            <a href="#inicio">Início</a>
+            <a href="#promocoes">Lançamentos</a>
+            <a href="#sanduiches">Mais Pedidos</a>
+            <a href="#unidades">Unidades</a>
+            <a href="#historia">História</a>
+            <a href="assets/cardapio.jpg" target="_blank" class="nav-mobile-cta">Ver Cardápio Completo</a>
         </nav>
     </header>
 

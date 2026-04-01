@@ -79,81 +79,81 @@ header {
     z-index: 1002;
 }
 
-/* Nav Desktop */
-.main-nav--desktop {
+/* === NAV DESKTOP === */
+.nav-desktop {
     display: flex;
     gap: 30px;
 }
 
-.main-nav a {
+.nav-desktop a {
     font-weight: 600;
     font-size: 1.05rem;
+    color: var(--text-color);
     transition: color 0.2s ease;
 }
 
-.main-nav a:hover {
-    color: var(--primary);
+.nav-desktop a:hover { color: var(--primary); }
+
+/* === BOTÃO HAMBURGER MOBILE === */
+.hamburger-btn {
+    display: none;
+    color: var(--text-color);
+    padding: 4px;
+    line-height: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* Nav Mobile (Dropdown) */
-.main-nav--mobile {
-    display: flex;
+/* === NAV MOBILE (CSS :target - Zero JS) === */
+.nav-mobile {
+    display: none; /* Escondido por padrão */
     flex-direction: column;
     position: fixed;
-    top: 80px;
+    top: 0;
     left: 0;
     width: 100%;
-    background: rgba(12, 12, 12, 0.97);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    padding: 12px 0 24px;
-    gap: 0;
-    align-items: stretch;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: translateY(-8px);
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
-    z-index: 1099;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    height: 100%;
+    background: rgba(10, 10, 10, 0.97);
+    z-index: 9999;
+    padding: 80px 0 40px;
+    overflow-y: auto;
 }
 
-.main-nav--mobile.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateY(0);
+/* Aparece quando o URL tem #nav-mobile */
+.nav-mobile:target {
+    display: flex;
 }
 
-.main-nav--mobile a {
-    color: rgba(255,255,255,0.85);
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 16px 28px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    text-align: left;
-    letter-spacing: 0.03em;
+.nav-mobile a {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 20px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    letter-spacing: 0.02em;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.main-nav--mobile a:last-child {
-    border-bottom: none;
+.nav-mobile a:hover { color: var(--primary); }
+
+.nav-mobile-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    padding: 8px;
+    line-height: 0;
+    opacity: 0.7;
 }
 
-.main-nav--mobile a:hover,
-.main-nav--mobile a:active {
-    color: var(--primary);
-    background: rgba(255,255,255,0.04);
-}
+.nav-mobile-close:hover { opacity: 1; }
 
-.main-nav--mobile .nav-cardapio-btn {
-    margin: 16px 24px 0;
-    border-bottom: none;
+.nav-mobile-cta {
+    margin: 24px 24px 0;
+    border-bottom: none !important;
     border-radius: 50px;
     background: var(--primary);
-    color: #fff;
+    color: #fff !important;
     text-align: center;
-    padding: 14px 24px;
+    padding: 16px 24px !important;
     font-weight: 700;
 }
 
@@ -941,7 +941,7 @@ header {
 
 /* Responsive */
 @media (max-width: 900px) {
-    .mobile-menu-btn {
+    .hamburger-btn {
         display: flex;
         align-items: center;
         margin-left: auto;
@@ -951,12 +951,9 @@ header {
         display: none;
     }
 
-    /* Esconde a nav de desktop no mobile */
-    .main-nav--desktop {
-        display: none !important;
+    .nav-desktop {
+        display: none;
     }
-
-    /* A nav mobile já tem os estilos definidos globalmente acima */
 
     .hero-sequence {
         max-width: 100%;
