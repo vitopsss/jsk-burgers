@@ -1,53 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // --- Menu Mobile ---
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileNav = document.getElementById('mobile-dropdown-nav');
-    const iconOpen = document.getElementById('icon-open');
-    const iconClose = document.getElementById('icon-close');
 
-    if (mobileMenuBtn && mobileNav) {
-        mobileMenuBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const isOpen = mobileNav.classList.toggle('active');
-            mobileMenuBtn.setAttribute('aria-expanded', isOpen);
-            mobileNav.setAttribute('aria-hidden', !isOpen);
-            if (iconOpen) iconOpen.style.display = isOpen ? 'none' : 'block';
-            if (iconClose) iconClose.style.display = isOpen ? 'block' : 'none';
-        });
-
-        // Fecha ao clicar num link
-        mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                mobileNav.setAttribute('aria-hidden', 'true');
-                if (iconOpen) iconOpen.style.display = 'block';
-                if (iconClose) iconClose.style.display = 'none';
-            });
-        });
-
-        // Fecha ao clicar fora
-        document.addEventListener('click', function(e) {
-            if (!mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                mobileNav.classList.remove('active');
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                mobileNav.setAttribute('aria-hidden', 'true');
-                if (iconOpen) iconOpen.style.display = 'block';
-                if (iconClose) iconClose.style.display = 'none';
-            }
-        });
-    }
-
-    // Scroll suave para links internos
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
+    // === SCROLL SUAVE ===
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            var href = this.getAttribute('href');
             if (href === '#') return;
-            const target = document.querySelector(href);
+            var target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
                 // Fecha o menu mobile se estiver aberto
-                if (mainNav) mainNav.classList.remove('active');
+                var menuNav = document.getElementById('mobile-dropdown-nav');
+                if (menuNav) menuNav.classList.remove('active');
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
