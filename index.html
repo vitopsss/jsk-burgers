@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSK Burgers | A Maior Hamburgueria do Norte</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="A maior hamburgueria do Norte. O hambúrguer que vai mudar o seu conceito!">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="assets/logojsk.jpg" alt="JSK Burgers">
+            </a>
+            
+            <input type="checkbox" id="mobile-menu-toggle" style="display: none;">
+            <label for="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Abrir Menu">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </label>
+
+            <nav class="main-nav">
+                <a href="#inicio">Início</a>
+                <a href="#promocoes">Lançamentos</a>
+                <a href="#sanduiches">Mais Pedidos</a>
+                <a href="#unidades">Unidades</a>
+                <a href="#historia">História</a>
+            </nav>
+            <a href="assets/cardapio.jpg" target="_blank" class="btn btn-primary pulse desktop-btn" style="font-weight: 700; border-radius: 50px;">Ver Cardápio Completo</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero container">
+            <div class="hero-content">
+                <img src="assets/logojsk.jpg" alt="Logo JSK Burgers" class="hero-main-logo">
+                <span class="tagline">A Maior Hamburgueria do Norte</span>
+                <h1>O Hambúrguer Que Vai<br>Mudar O Seu Conceito.</h1>
+                <p class="info">Manaus-Amazonas | Todos os dias 17h - 23h</p>
+                <div class="hero-actions">
+                    <a href="#unidades" class="btn btn-primary">FAZER MEU PEDIDO AGORA</a>
+                    <a href="assets/cardapio.jpg" target="_blank" class="btn btn-outline">Explorar o Menu Inteiro</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-bg-text">
+                    <span class="month-burger">Hambúrguer do Mês</span>
+                    <h2 class="burger-name">Bacon Blue Pastrami</h2>
+                    <p class="burger-ingredients">Pão brioche, Blend 130g (in natura), Gorgonzola, Picles de cebola roxa, Pastrami de bacon e maionese.</p>
+                </div>
+                <img src="hamburguerjsk/ezgif-frame-001.png" alt="Hambúrguer JSK" id="hero-animation-img" class="hero-sequence">
+            </div>
+        </section>
+
+        <section id="sanduiches" class="sanduiches container fade-in">
+            <h2>Os Mais Pedidos</h2>
+            <div class="grid">
+                <!-- Sanduíche 1 -->
+                <div class="card sandwich-card">
+                    <div class="placeholder-img">
+                        <img src="maispedidos/jskburguer.avif" alt="JSK Burguer">
+                    </div>
+                    <h3>JSK Burguer</h3>
+                    <p class="desc">Pão brioche, Blend de 130g (in natura), Queijo, Bacon, Onion rings, Cebola caramelizada e Maionese.</p>
+                    <a href="#unidades" class="btn btn-primary">Pedir Agora</a>
+                </div>
+                <!-- Sanduíche 2 -->
+                <div class="card sandwich-card">
+                    <div class="placeholder-img">
+                        <img src="maispedidos/supremoaustraliano.avif" alt="Supremo Australiano">
+                    </div>
+                    <h3>Supremo Australiano</h3>
+                    <p class="desc">Pão australiano, Blend de 130g (in natura), Queijo, Cebola caramelizada, Bacon rústico, Cebola crispy, Molho barbecue e Maionese.</p>
+                    <a href="#unidades" class="btn btn-primary">Pedir Agora</a>
+                </div>
+                <!-- Sanduíche 3 -->
+                <div class="card sandwich-card">
+                    <div class="placeholder-img">
+                        <img src="maispedidos/cheesesalad.avif" alt="Cheese Salad">
+                    </div>
+                    <h3>Cheese Salad</h3>
+                    <p class="desc">Tradicional Cheese Salada regional com Pão brioche, Blend de 130g (in natura), Queijo, Ovo, Presunto, Alface, Tomate e Maionese.</p>
+                    <a href="#unidades" class="btn btn-primary">Pedir Agora</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="lunch">
+            <div class="container fade-in">
+                <h2>Almoço Especial</h2>
+                <p>Venha conhecer a nossa unidade Park Mall no horário de almoço! Dispomos de um cardápio executivo saboroso e rápido feito para si.</p>
+                <a href="assets/almocoparkmall.jpg" target="_blank" class="btn btn-light pulse" style="font-weight: 700;">Ver Menu de Almoço</a>
+            </div>
+        </section>
+
+        <section id="promocoes" class="promocoes container fade-in">
+            <div class="promocoes-header">
+                <h2>PROMOÇÕES E LANÇAMENTOS.</h2>
+                <p>Descubra as novidades incríveis que acabam de aterrar na grelha da JSK Burgers.</p>
+            </div>
+            <div class="promocoes-grid">
+                <!-- Lançamento 1 -->
+                <div class="promo-card">
+                    <div class="promo-img-wrapper">
+                        <span class="promo-badge promo-hot">LANÇAMENTO</span>
+                        <img src="lançamentosepromos/baconzola.avif" alt="Hambúrguer Baconzola">
+                    </div>
+                    <div class="promo-content">
+                        <h3>Baconzola</h3>
+                        <p>Pão brioche, Blend de 130g (in natura), Gorgonzola, Cebola caramelizada com bacon e Maionese.</p>
+                        <a href="https://dl.ifood.com.br/" target="_blank" class="btn btn-primary" style="margin-top: auto; width: 100%; text-align: center;">Provar agora</a>
+                    </div>
+                </div>
+
+                <!-- Lançamento 2 -->
+                <div class="promo-card">
+                    <div class="promo-img-wrapper">
+                        <span class="promo-badge">NOVO</span>
+                        <img src="lançamentosepromos/cowboy.avif" alt="Hambúrguer Cowboy">
+                    </div>
+                    <div class="promo-content">
+                        <h3>Cowboy</h3>
+                        <p>Pão brioche, Blend de 130g (in natura), 2 Fatias de queijo Cheddar, Onion Rings, Molho Bbq e Maionese.</p>
+                        <a href="https://dl.ifood.com.br/" target="_blank" class="btn btn-primary" style="margin-top: auto; width: 100%; text-align: center;">Provar agora</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="unidades" class="unidades container fade-in">
+            <h2>Nossas Unidades - Peça Agora</h2>
+            <div class="grid">
+                <!-- Arena JSK -->
+                <div class="card">
+                    <h3>Arena JSK</h3>
+                    <p class="address">Rua José de Arimatéia, 2 - Alvorada</p>
+                    <div class="links">
+                        <a href="https://wa.me/5592981710612" target="_blank" class="btn-link">WhatsApp</a>
+                        <a href="https://share.google/6mLSDU4glTdExKTET" target="_blank" class="btn-link">Maps</a>
+                        <a href="https://www.instagram.com/jsk_arena/" target="_blank" class="btn-link">Instagram</a>
+                    </div>
+                </div>
+                <!-- Adrianópolis -->
+                <div class="card">
+                    <h3>Adrianópolis</h3>
+                    <p class="address">Av. Jornalista Umberto Calderaro Filho, 624 - Adrianópolis</p>
+                    <div class="links">
+                        <a href="https://www.ifood.com.br/delivery/manaus-am/jsk-burgers---adrianopolis-adrianopolis/a608c07e-ea75-4660-9629-f587a1924928" target="_blank" class="btn-link">iFood</a>
+                        <a href="https://wa.me/5592981516062" target="_blank" class="btn-link">WhatsApp</a>
+                    </div>
+                </div>
+                <!-- Amazonas Shopping -->
+                <div class="card">
+                    <h3>Amazonas Shopping</h3>
+                    <p class="address">Praça de Alimentação - 2º Piso (Av. Djalma Batista, 482)</p>
+                    <div class="links">
+                        <a href="https://share.google/dpP9J2Rlq6gZdSpAt" target="_blank" class="btn-link">Maps</a>
+                    </div>
+                </div>
+                <!-- Cidade Nova -->
+                <div class="card">
+                    <h3>Cidade Nova</h3>
+                    <p class="address">Av. Max Teixeira, 3339 - Cidade Nova</p>
+                    <div class="links">
+                        <a href="https://www.ifood.com.br/delivery/manaus-am/jsk-burgers---cidade-nova-colonia-santo-antonio/6d4b0b03-dab0-4a14-912c-42a122968fe7" target="_blank" class="btn-link">iFood</a>
+                        <a href="https://wa.me/5592981231710" target="_blank" class="btn-link">WhatsApp</a>
+                        <a href="https://share.google/UHR113YWzclFlBIu5" target="_blank" class="btn-link">Maps</a>
+                    </div>
+                </div>
+                <!-- Djalma Batista -->
+                <div class="card">
+                    <h3>Djalma Batista</h3>
+                    <p class="address">Av. Djalma Batista, 1854a - São Geraldo</p>
+                    <div class="links">
+                        <a href="https://share.google/TFKGbu7KwqK7S6Tp7" target="_blank" class="btn-link">Maps</a>
+                    </div>
+                </div>
+                <!-- Laranjeiras -->
+                <div class="card">
+                    <h3>Laranjeiras</h3>
+                    <p class="address">Rua Mato Grosso, 10 - Flores (Praça Laranjeiras)</p>
+                    <div class="links">
+                        <a href="https://www.ifood.com.br/delivery/manaus-am/jsk-burgers---praca-laranjeiras-flores/a42b16b2-6b34-4bb8-b9fc-c0373dc0530e" target="_blank" class="btn-link">iFood</a>
+                        <a href="https://wa.me/5592981245669" target="_blank" class="btn-link">WhatsApp</a>
+                        <a href="https://share.google/sBLG4NuR6i9L37pPz" target="_blank" class="btn-link">Maps</a>
+                    </div>
+                </div>
+                <!-- Manauara Shopping -->
+                <div class="card">
+                    <h3>Manauara Shopping</h3>
+                    <p class="address">Praça de Alimentação - Piso Buriti (Av. Mário Ypiranga, 1300)</p>
+                    <div class="links">
+                        <a href="https://share.google/tXzoDrjknYi0sNxlE" target="_blank" class="btn-link">Maps</a>
+                    </div>
+                </div>
+                <!-- Park Mall -->
+                <div class="card">
+                    <h3>Park Mall</h3>
+                    <p class="address">Av. Ephigênio Salles - Aleixo (No complexo Park Mall)</p>
+                    <div class="links">
+                        <a href="https://www.ifood.com.br/delivery/manaus-am/jsk-burgers---ephigenio-aleixo/f662d283-de5f-49cf-90b0-76d12ad3fa4f" target="_blank" class="btn-link">iFood</a>
+                        <a href="https://share.google/DAg2VkmKu1YMeTon0" target="_blank" class="btn-link">Maps</a>
+                    </div>
+                </div>
+                <!-- Ponta Negra -->
+                <div class="card">
+                    <h3>Ponta Negra</h3>
+                    <p class="address">Av. Coronel Teixeira, 1320 - Ponta Negra</p>
+                    <div class="links">
+                        <a href="https://www.ifood.com.br/delivery/manaus-am/jsk-burgers---ponta-negra-ponta-negra/18030d28-99fd-43b1-8686-d565ec1fbde0" target="_blank" class="btn-link">iFood</a>
+                        <a href="https://wa.me/5592981268582" target="_blank" class="btn-link">WhatsApp</a>
+                        <a href="https://share.google/22ZDWnyayCkveLp2q" target="_blank" class="btn-link">Maps</a>
+                    </div>
+                </div>
+                <!-- Zona Leste -->
+                <div class="card">
+                    <h3>Zona Leste</h3>
+                    <p class="address">Av. Autaz Mirim, 7043 - Tancredo Neves</p>
+                    <div class="links">
+                        <a href="https://www.ifood.com.br/delivery/manaus-am/jsk-burgers---zona-leste-tancredo-neves/c784bfe7-41f9-4012-a970-59f4ba0bca36" target="_blank" class="btn-link">iFood</a>
+                        <a href="https://wa.me/5592981691961" target="_blank" class="btn-link">WhatsApp</a>
+                        <a href="https://share.google/Pr9st3rHtAPRgukF3" target="_blank" class="btn-link">Maps</a>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 60px;">
+                <h3 style="margin-bottom: 20px; color: var(--text-color);">Ainda indeciso sobre qual escolher?</h3>
+                <a href="assets/cardapio.jpg" target="_blank" class="btn btn-primary pulse" style="font-size: 1.2rem; padding: 15px 40px; border-radius: 50px;">ABRIR CARDÁPIO OFICIAL JSK</a>
+            </div>
+        </section>
+
+        <section id="galeria" class="galeria fade-in">
+            <h2>Nossas Delícias</h2>
+            <div class="slider">
+                <div class="slide-track">
+                    <!-- Base 6 slides -->
+                    <div class="slide"><img src="carousel/SaveClip.App_627505892_18556600939022690_3834666823798104043_n.jpg" alt="Galeria JSK"></div>
+                    <div class="slide"><img src="carousel/SaveClip.App_627605460_18554477263022690_6607104927214697698_n.jpg" alt="Galeria JSK"></div>
+                    <div class="slide"><img src="carousel/SaveClip.App_657219021_18573993562022690_4751360509129198970_n.jpg" alt="Galeria JSK"></div>
+                    <div class="slide"><img src="carousel/SaveClip.App_657238994_18573993589022690_293632794138980840_n.jpg" alt="Galeria JSK"></div>
+                    <div class="slide"><img src="carousel/SaveClip.App_658522918_18573993601022690_4969772677502441076_n.jpg" alt="Galeria JSK"></div>
+                    <div class="slide"><img src="carousel/SaveClip.App_658839985_18573993580022690_7863964419865179396_n.jpg" alt="Galeria JSK"></div>
+                    
+                    <!-- Duplicação para Animação Infinita -->
+                    <div class="slide"><img src="carousel/SaveClip.App_627505892_18556600939022690_3834666823798104043_n.jpg" alt="Galeria JSK"></div>
+                    <div class="slide"><img src="carousel/SaveClip.App_627605460_18554477263022690_6607104927214697698_n.jpg" alt="Galeria JSK"></div>
+                    <div class="slide"><img src="carousel/SaveClip.App_657219021_18573993562022690_4751360509129198970_n.jpg" alt="Galeria JSK"></div>
+                    <div class="slide"><img src="carousel/SaveClip.App_657238994_18573993589022690_293632794138980840_n.jpg" alt="Galeria JSK"></div>
+                    <div class="slide"><img src="carousel/SaveClip.App_658522918_18573993601022690_4969772677502441076_n.jpg" alt="Galeria JSK"></div>
+                    <div class="slide"><img src="carousel/SaveClip.App_658839985_18573993580022690_7863964419865179396_n.jpg" alt="Galeria JSK"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews" class="reviews container fade-in">
+            <h2>O Que Dizem Nossos Clientes</h2>
+            <div class="reviews-grid">
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Acho que é a minha hamburgueria preferida da cidade. Atendimento excelente, ambiente bonito com opção de área externa, comida chega rápido. A coxinha de costela é maravilhosa..."</p>
+                    <p class="review-author">- Jonathan Lima</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"O primeiro estabelecimento que frequentei em Manaus com um atendimento 100% fora do padrão (no bom sentido)! Funcionários extremamente simpáticos e disponíveis."</p>
+                    <p class="review-author">- Valdeane Soares</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Ótima experiência em Manaus! Excelente atendimento. Lanche muito saboroso e batata bem quentinha. Muito próximo da hospedagem Millenium."</p>
+                    <p class="review-author">- Juliana Garcia Medeiros</p>
+                </div>
+                <!-- Review 4 -->
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Sem dúvida e muito provavelmente é a melhor casa de hambúrguer em Manaus. O JSK Burgers não oferece apenas opções de sanduíches, temos também hotdogs."</p>
+                    <p class="review-author">- David Larrat</p>
+                </div>
+                <!-- Review 5 -->
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Os atendentes são bem atenciosos. O local é bom e agradável. Os lanches também são muito bons e acessíveis. A batata frita com costelinha picante é sensacional."</p>
+                    <p class="review-author">- Luis Carlos Moura</p>
+                </div>
+                <!-- Review 6 -->
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Hambúrguer excelente, para mim, em Manaus não há melhor. Atendimento sempre cordial, ágil e de excelência, nada a reclamar do ambiente."</p>
+                    <p class="review-author">- Matheus Lima Vital</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="historia" class="media container fade-in">
+            <h2>A História e o Sucesso da JSK</h2>
+            <div class="video-grid">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/rwftL-zY18s?feature=oembed" title="O Café e a Conta" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/WBGlFZ2ZnBs?feature=oembed" title="Burger Fenômeno" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mega-footer">
+        <div class="container footer-grid fade-in">
+            <!-- Coluna 1: Marca -->
+            <div class="footer-col brand-col">
+                <img src="assets/logojsk.jpg" alt="JSK Burgers" class="footer-logo">
+                <h3 class="brand-title">JSK BURGERS,<br>A MAIOR HAMBURGUERIA DO NORTE</h3>
+                <p class="brand-desc">O Hambúrguer que vai mudar o seu conceito. Siga as nossas redes sociais:</p>
+                <div class="footer-socials">
+                    <a href="https://www.tiktok.com/@jsk_burgers" target="_blank" aria-label="TikTok">
+                        <svg width="22" height="26" viewBox="0 0 19 23" fill="none"><path d="M6.71339 22.6613C10.423 22.6613 13.4268 19.5823 13.4268 15.7798V6.46586C14.5232 8.1747 16.3705 9.20616 18.368 9.20616C18.5482 9.20616 18.7284 9.20616 18.9086 9.17537V5.40361C16.0551 5.18809 13.7722 2.90964 13.4718 0H10.3029L10.2728 15.826C10.2728 17.7657 8.60576 19.2898 6.71339 19.2898C4.82103 19.2898 3.28911 17.7195 3.28911 15.7798C3.28911 13.84 4.82103 12.2697 6.71339 12.2697C6.84856 12.2697 6.98373 12.3005 7.13392 12.3159V8.92905C6.99875 8.92905 6.86358 8.91366 6.71339 8.91366C3.00375 8.88286 0 11.9772 0 15.7798C0 19.5823 3.00375 22.6613 6.71339 22.6613Z" fill="currentColor"></path></svg>
+                    </a>
+                    <a href="https://www.instagram.com/jsk_burgers/?hl=en" target="_blank" aria-label="Instagram">
+                        <svg width="25" height="26" viewBox="0 0 22 23" fill="none"><path d="M15.5043 0.292969H5.98235C2.69324 0.292969 0.00488281 3.03326 0.00488281 6.42014V16.8271C0.00488281 20.1986 2.67822 22.9543 5.98235 22.9543H15.5043C18.7934 22.9543 21.4817 20.214 21.4817 16.8271V6.42014C21.4817 3.03326 18.8084 0.292969 15.5043 0.292969ZM19.6344 16.8271C19.6344 19.1671 17.7721 21.0607 15.5043 21.0607H5.98235C3.6995 21.0607 1.85219 19.1517 1.85219 16.8271V6.42014C1.85219 4.08012 3.6995 2.18654 5.98235 2.18654H15.5043C17.7871 2.18654 19.6344 4.08012 19.6344 6.42014V16.8271Z" fill="currentColor"></path><path d="M10.7284 5.78809C7.58944 5.78809 5.05127 8.40522 5.05127 11.6228C5.05127 14.8403 7.60446 17.442 10.7284 17.442C13.8523 17.442 16.4205 14.8249 16.4205 11.6228C16.4205 8.42062 13.8673 5.78809 10.7284 5.78809ZM10.7284 15.5639C8.61072 15.5639 6.88356 13.7934 6.88356 11.6228C6.88356 9.45208 8.61072 7.68166 10.7284 7.68166C12.846 7.68166 14.5732 9.45208 14.5732 11.6228C14.5732 13.7934 12.846 15.5639 10.7284 15.5639Z" fill="currentColor"></path><path d="M16.5858 4.40332C15.955 4.40332 15.4443 4.92675 15.4443 5.57333C15.4443 6.21992 15.955 6.74335 16.5858 6.74335C17.2166 6.74335 17.7272 6.21992 17.7272 5.57333C17.7272 4.92675 17.2166 4.40332 16.5858 4.40332Z" fill="currentColor"></path></svg>
+                    </a>
+                    <a href="https://open.spotify.com/playlist/4ALwu8TWjmvPh3I2qQNxmU?go=1&sp_cid=33bba4c035af32c60344581168a2903d&utm_source=embed_player_p&utm_medium=desktop" target="_blank" aria-label="Spotify">
+                        <svg width="27" height="26" viewBox="0 0 24 23" fill="none"><path d="M12.0101 0.277344C5.88246 0.277344 0.92627 5.37306 0.92627 11.6388C0.92627 17.9045 5.89748 23.0002 12.0101 23.0002C18.1228 23.0002 23.094 17.9199 23.094 11.6388C23.094 5.35767 18.1378 0.277344 12.0101 0.277344ZM17.1015 16.6729C16.9062 17.0116 16.4707 17.1194 16.1553 16.9038C13.5571 15.272 10.2679 14.9025 6.42313 15.8108C6.04767 15.9032 5.68722 15.6569 5.59711 15.272C5.507 14.8871 5.74729 14.5176 6.12276 14.4253C10.343 13.44 13.9626 13.8557 16.8912 15.6877C17.2216 15.8878 17.3268 16.3342 17.1165 16.6575L17.1015 16.6729ZM18.4532 13.5785C18.1979 13.9942 17.6722 14.1328 17.2667 13.8711C14.293 11.9929 9.74228 11.4541 6.21287 12.5471C5.76231 12.6856 5.26669 12.4239 5.13152 11.9621C4.99635 11.5002 5.25168 10.9922 5.70224 10.8536C9.72727 9.60666 14.7285 10.2071 18.1528 12.3624C18.5583 12.6241 18.6935 13.1629 18.4382 13.5785H18.4532ZM18.5733 10.3456C14.9989 8.17493 9.1115 7.9748 5.68722 9.03705C5.14654 9.20639 4.56081 8.8831 4.3956 8.32888C4.2304 7.77467 4.54579 7.17427 5.08646 7.00492C9.00636 5.78872 15.5095 6.01965 19.6246 8.52902C20.1203 8.82152 20.2855 9.4835 19.9851 9.99153C19.6997 10.4996 19.0539 10.6689 18.5583 10.361L18.5733 10.3456Z" fill="currentColor"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Coluna 2: Institucional -->
+            <div class="footer-col inst-col">
+                <h4 class="footer-title">Institucional</h4>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#promocoes">Lançamentos</a></li>
+                    <li><a href="#sanduiches">Mais Pedidos</a></li>
+                    <li><a href="#unidades">Unidades</a></li>
+                    <li><a href="assets/cardapio.jpg" target="_blank">Cardápio Completo</a></li>
+                    <li><a href="#historia">Eventos e Vídeos</a></li>
+                </ul>
+                <h4 class="footer-title" style="margin-top: 25px;">SAC</h4>
+                <p class="footer-text">sac@jskburgers.com.br</p>
+            </div>
+
+            <!-- Coluna 3: Apps & Regional -->
+            <div class="footer-col dl-col">
+                <h4 class="footer-title">Faça seu pedido pelo App</h4>
+                <div class="app-links">
+                    <!-- iFood Button Sim -->
+                    <a href="#" id="ifood-download" class="app-btn ifood-btn">
+                        <span style="font-weight: 900; font-size: 1.2rem; margin-right: 5px;">iFood</span>
+                    </a>
+                </div>
+                
+                <h4 class="footer-title" style="margin-top: 30px;">Localização</h4>
+                <p class="footer-text">Manaus - Amazonas</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; text-align: center; gap: 10px;">
+                <span>© 2026 JSK Burgers. Todos os direitos reservados.</span>
+                <span>@jsk_burgers</span>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
