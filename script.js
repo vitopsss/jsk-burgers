@@ -79,26 +79,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function startScrollAnimation() {
             let lastFrame = 0;
-            // Bloqueio de performance para não inundar o GPU
             let ticking = false; 
             
-            // O hambúrguer só é montado através do scroll nativo puro
             window.addEventListener('scroll', () => {
-                const scrollY = window.scrollY;
                 if (!ticking) {
                     window.requestAnimationFrame(() => {
-                        // Mais sensível e rápido no mobile (300px), mais longo e dramático no PC (500px)
                         const isMobile = window.innerWidth <= 900;
-                        const scrollNecessario = isMobile ? 300 : 500; 
+                        let progress = 0;
                         
-                        let progress = scrollY / scrollNecessario;
+                        if (isMobile) {
+                            // No mobile: O hambúrguer monta dependendo de onde ele está na janela fisicamente!
+                            const rect = canvas.getBoundingClientRect();
+                            const windowHeight = window.innerHeight;
+                            
+                            // Distância mágica: "Começa quando entrar pela base e termina perto do centro"
+                            const startVis = windowHeight - 50; 
+                            const endVis = windowHeight / 2 - 50;
+                            
+                            progress = (startVis - rect.top) / (startVis - endVis);
+                        } else {
+                            // No PC: O hambúrguer nasce no centro, portanto vincula direto aos primeiros 500px da página
+                            progress = window.scrollY / 500;
+                        }
+                        
                         if (progress < 0) progress = 0;
-                        if (progress > 1) progress = 1; // Trava perfeitamente no último frame final
+                        if (progress > 1) progress = 1;
                         
-                        // Mapeia a percentagem da descida
                         let targetFrame = Math.floor(progress * (totalFrames - 1));
                         
-                        // Reescreve o Canvas instantaneamente sem mexer na estrutura da página HTML (Zero Lag)
                         if (targetFrame !== lastFrame && imagesObj[targetFrame]) {
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
                             ctx.drawImage(imagesObj[targetFrame], 0, 0);
@@ -108,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                     ticking = true;
                 }
-            }, { passive: true }); // passive impede bloqueios visuais na Apple
+            }, { passive: true });
         }
     }
 
