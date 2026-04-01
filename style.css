@@ -913,7 +913,7 @@ header {
 
     .hero-sequence {
         max-width: 100%;
-        margin-top: 0px;
+        margin-top: 70px; /* Desce a posição física do canvas para não pisar em cima da maionese */
         /* Aliviar para apenas UMA máscara de sombra esticada para poupar dezenas de megabytes de RAM GPU e evitar lag total */
         filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
         -webkit-filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
