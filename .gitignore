@@ -1,0 +1,26 @@
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Editores de Código / IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Dependências (caso se venha a usar no futuro)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build e Logs
+dist/
+build/
+*.log
+
+# Arquivos temporários do Sistema
+*~
+.tmp/
